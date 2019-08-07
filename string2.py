@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4 -tt
+#!/usr/bin/python -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -17,7 +17,11 @@
 # Return the resulting string.
 def verbing(s):
   # +++your code here+++
-  return
+  if len(s) >= 3:
+    if s[-3:] != 'ing': s = s + 'ing'
+    else: s = s + 'ly'
+  return s
+
 
 
 # E. not_bad
@@ -30,7 +34,12 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
   # +++your code here+++
-  return
+  n = s.find('not')
+  b = s.find('bad')
+  if n != -1 and b != -1 and b > n:
+    s = s[:n] + 'good' + s[b+3:]
+  return s
+
 
 
 # F. front_back
@@ -42,7 +51,15 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
   # +++your code here+++
-  return
+
+  a_middle = len(a) // 2
+  b_middle = len(b) // 2
+  if len(a) % 2 == 1:  # add 1 if length is odd
+    a_middle = a_middle + 1
+  if len(b) % 2 == 1:
+    b_middle = b_middle + 1
+  return a[:a_middle] + b[:b_middle] + a[a_middle:] + b[b_middle:]
+
 
 
 # Simple provided test() function used in main() to print
